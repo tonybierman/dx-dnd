@@ -1,0 +1,32 @@
+/* Default drag-and-drop styling. Consumers can override or skip
+ * this stylesheet entirely. */
+
+.dnd-dz {
+    height: 10px;
+    border-radius: 3px;
+    transition: background-color 80ms ease, height 80ms ease;
+}
+
+.dnd-dz-hover {
+    background-color: currentColor;
+    height: 30px;
+    opacity: 0.5;
+}
+
+.dnd-dz-tail {
+    flex: 1;
+    min-height: 24px;
+}
+
+.dnd-handle {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    opacity: 0.4;
+    line-height: 1;
+    padding: 0 4px;
+    transition: opacity 80ms ease;
+}
+
+.dnd-handle:hover { opacity: 1; }
+.dnd-handle:active { cursor: grabbing; }

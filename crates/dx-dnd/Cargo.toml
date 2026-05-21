@@ -1,0 +1,36 @@
+[package]
+name = "dx-dnd"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Multi-target drag-and-drop primitives for Dioxus 0.7 (hooks + components, pointer-events based, touch-friendly)."
+
+[lib]
+path = "src/lib.rs"
+
+[features]
+default = []
+web = ["dioxus/web", "dep:dioxus-web", "dep:web-sys", "dep:wasm-bindgen"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
+
+[dependencies]
+# Default features include `lib` (which enables `asset!()`) — required
+# because we ship a bundled stylesheet as an Asset constant.
+dioxus = { version = "0.7.9" }
+
+# Web-only — the pointer-event mechanics call element_from_point and need
+# wasm-bindgen / web_sys. All gated behind the `web` feature.
+dioxus-web = { version = "0.7.9", default-features = false, optional = true }
+wasm-bindgen = { version = "0.2", optional = true }
+
+[dependencies.web-sys]
+version = "0.3"
+optional = true
+features = [
+    "Element",
+    "HtmlElement",
+    "EventTarget",
+    "DragEvent",
+    "DataTransfer",
+]
