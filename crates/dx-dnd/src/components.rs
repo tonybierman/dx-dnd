@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 
 use crate::state::{
-    use_drag_drop, use_drag_drop_ctx, DragDrop, DragDropConfig, DragDropEvent, DropTargetCtx,
+    DragDrop, DragDropConfig, DragDropEvent, DropTargetCtx, use_drag_drop, use_drag_drop_ctx,
 };
 
 /// Top-level wrapper. Initializes drag-drop state and provides it via
@@ -182,7 +182,11 @@ fn SlotZone(list_id: String, slot: usize) -> Element {
         Some((l, s)) => l == &list_id && *s == slot,
         None => false,
     };
-    let class = if is_hover { "dnd-dz dnd-dz-hover" } else { "dnd-dz" };
+    let class = if is_hover {
+        "dnd-dz dnd-dz-hover"
+    } else {
+        "dnd-dz"
+    };
     let over_list = list_id.clone();
     let drop_list = list_id.clone();
     rsx! {

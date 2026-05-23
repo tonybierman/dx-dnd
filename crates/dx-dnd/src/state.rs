@@ -176,11 +176,8 @@ impl<ItemId: Copy + Eq + 'static> DragDrop<ItemId> {
                         let _ = dt.set_data("text/plain", "dx-dnd");
                         if let Some(target) = web_evt.target() {
                             if let Ok(start_el) = target.dyn_into::<web_sys::Element>() {
-                                if let Ok(Some(item_el)) =
-                                    start_el.closest("[data-dnd-item]")
-                                {
-                                    if let Ok(html_el) =
-                                        item_el.dyn_into::<web_sys::HtmlElement>()
+                                if let Ok(Some(item_el)) = start_el.closest("[data-dnd-item]") {
+                                    if let Ok(html_el) = item_el.dyn_into::<web_sys::HtmlElement>()
                                     {
                                         dt.set_drag_image(&html_el, 0, 0);
                                     }
@@ -204,5 +201,4 @@ impl<ItemId: Copy + Eq + 'static> DragDrop<ItemId> {
             state.drop_target.set(None);
         }
     }
-
 }

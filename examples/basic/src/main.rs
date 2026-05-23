@@ -7,7 +7,7 @@
 
 use dioxus::prelude::*;
 
-use dx_dnd::{DragDropArea, DragDropEvent, Draggable, DropList, DEFAULT_STYLE};
+use dx_dnd::{DEFAULT_STYLE, DragDropArea, DragDropEvent, Draggable, DropList};
 
 const APP_CSS: Asset = asset!("/assets/app.css");
 
@@ -31,19 +31,40 @@ fn App() -> Element {
             (
                 "todo".to_string(),
                 vec![
-                    Item { id: 1, label: "Write the test plan".into() },
-                    Item { id: 2, label: "Set up the staging environment".into() },
-                    Item { id: 3, label: "Draft the launch email".into() },
+                    Item {
+                        id: 1,
+                        label: "Write the test plan".into(),
+                    },
+                    Item {
+                        id: 2,
+                        label: "Set up the staging environment".into(),
+                    },
+                    Item {
+                        id: 3,
+                        label: "Draft the launch email".into(),
+                    },
                 ],
             ),
             (
                 "doing".to_string(),
                 vec![
-                    Item { id: 4, label: "Polish the demo deck".into() },
-                    Item { id: 5, label: "Review the PR".into() },
+                    Item {
+                        id: 4,
+                        label: "Polish the demo deck".into(),
+                    },
+                    Item {
+                        id: 5,
+                        label: "Review the PR".into(),
+                    },
                 ],
             ),
-            ("done".to_string(), vec![Item { id: 6, label: "Kickoff meeting".into() }]),
+            (
+                "done".to_string(),
+                vec![Item {
+                    id: 6,
+                    label: "Kickoff meeting".into(),
+                }],
+            ),
         ]
     });
 
@@ -52,7 +73,9 @@ fn App() -> Element {
         let mut snap = lists.write();
         let from_idx = snap.iter().position(|(id, _)| id == &evt.from_list);
         let to_idx = snap.iter().position(|(id, _)| id == &evt.to_list);
-        let (Some(from_idx), Some(to_idx)) = (from_idx, to_idx) else { return };
+        let (Some(from_idx), Some(to_idx)) = (from_idx, to_idx) else {
+            return;
+        };
         if evt.from_slot >= snap[from_idx].1.len() {
             return;
         }
@@ -76,7 +99,10 @@ fn App() -> Element {
         next_id.set(id + 1);
         let mut snap = lists.write();
         if let Some((_, items)) = snap.iter_mut().find(|(l, _)| l == &list_id) {
-            items.push(Item { id, label: format!("New item {id}") });
+            items.push(Item {
+                id,
+                label: format!("New item {id}"),
+            });
         }
     };
 
