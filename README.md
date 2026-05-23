@@ -1,4 +1,4 @@
-# dx-dnd
+# Dioxus Drag and Drop
 
 Multi-target (cross-container) drag-and-drop primitives for Dioxus 0.7.
 Pointer-events based — works on mouse, touch, and pen with a single code
