@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 publish = false
 description = "Multi-target drag-and-drop primitives for Dioxus 0.7 (hooks + components, pointer-events based, touch-friendly)."
+license = "MIT OR Apache-2.0"
 
 [lib]
 path = "src/lib.rs"
